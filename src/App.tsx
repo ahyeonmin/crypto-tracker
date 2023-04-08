@@ -64,13 +64,6 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
-  footer {
-    button {
-      position: fixed;
-      left: 30px;
-      bottom: 20px;
-    }
-  }
 `;
 
 function App() {

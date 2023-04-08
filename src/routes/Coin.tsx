@@ -8,6 +8,9 @@ import { fetchCoinsInfo, fetchCoinsTickers } from "../api";
 import Helmet from "react-helmet";
 import { useSetRecoilState } from "recoil";
 import { isDarkAtom } from "../atom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
 
 interface RouteParams {
     coinId: string;
@@ -114,16 +117,31 @@ function Coin() {
     `;
 
     const Header = styled.div`
-        height: 10%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        height: 10%;
         padding-bottom: 20px;
     `;
 
-    const Title = styled.h1`
+    const Home = styled.div`
+        font-size: 30px;
+    `;
+
+    const Title = styled.div`
         color: ${(props) => props.theme.accentColor};
         font-family: 'Poppins', sans-serif;
         font-size: 45px;
+    `;
+
+    const Mode = styled.div`
+        button {
+            background: none;
+            border: 2px solid;
+            border-radius: 20px;
+            color: ${(prop) => prop.theme.textColor};
+            font-size: 20px;
+            cursor: pointer;
+        }
     `;
 
     const Overview = styled.div`
@@ -155,6 +173,7 @@ function Coin() {
     const Tabs = styled.div`
         display: flex;
         justify-content: space-between;
+        width: 100%;
         margin-bottom: 30px;
     `;
 
@@ -176,10 +195,19 @@ function Coin() {
                 </title>
             </Helmet>
             <Header>
-                <Link to={`/`}>←</Link>
+                <Home>
+                    <Link to={`/`}>
+                        <FontAwesomeIcon icon={faAngleLeft} />
+                    </Link>
+                </Home>
                 <Title>
                     {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
                 </Title>
+                <Mode>
+                    <button onClick={toggleDarkAtom}>
+                        <FontAwesomeIcon icon={faMoon} />
+                    </button>
+                </Mode>
             </Header>
             <div>
                 {loading ? <Loader>Loading...</Loader> : 
@@ -228,9 +256,6 @@ function Coin() {
                     </>
                 }
             </div>
-            <footer>
-                <button onClick={toggleDarkAtom}>mode</button>
-            </footer>
         </Container>
     );
 }

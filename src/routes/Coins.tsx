@@ -5,6 +5,8 @@ import { fetchCoins } from "../api";
 import Helmet from "react-helmet";
 import { useSetRecoilState } from "recoil";
 import { isDarkAtom } from '../atom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
 
 function Coins() {
     interface ICoins {
@@ -41,10 +43,10 @@ function Coins() {
     `;
 
     const Header = styled.div`
-        height: 10%;
         display: flex;
+        height: 10%;
         justify-content: center;
-        padding-bottom: 20px;
+        padding-bottom: 30px;
     `;
 
     const Title = styled.h1`
@@ -69,6 +71,20 @@ function Coins() {
             &:hover {
                 color: ${(props) => props.theme.accentColor};
             }
+        }
+    `;
+
+    const Mode = styled.div`
+        button {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            background: none;
+            border: 2px solid;
+            border-radius: 20px;
+            color: ${(prop) => prop.theme.textColor};
+            font-size: 20px;
+            cursor: pointer;
         }
     `;
 
@@ -99,9 +115,11 @@ function Coins() {
                     )
                 }
             </div>
-            <footer>
-                <button onClick={toggleDarkAtom}>mode</button>
-            </footer>
+            <Mode>
+                <button onClick={toggleDarkAtom}>
+                    <FontAwesomeIcon icon={faMoon} />
+                </button>
+            </Mode>
         </Container>
     );
 }
