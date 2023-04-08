@@ -122,8 +122,8 @@ function Coin() {
 
     const Title = styled.h1`
         color: ${(props) => props.theme.accentColor};
+        font-family: 'Poppins', sans-serif;
         font-size: 45px;
-        font-weight: bold;
     `;
 
     const Overview = styled.div`
